@@ -3,10 +3,8 @@ import { json } from "body-parser";
 
 const router = express.Router();
 
-router.get("/api/users/currentuser", () => {
-
+router.get("/api/users/currentuser", (req,res) => {
+  res.send("Hi there!")
 })
-
-app.use(json());
 
 export {router as currentUserRouter };
