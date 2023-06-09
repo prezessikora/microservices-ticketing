@@ -7,4 +7,6 @@ To run it locally
 3. Configure the load balancer on Kub cluster
 4. run npm install
 5. Install skaffold
-6. run 'skaffold dev'
+6. Add cluster secrets from local secrets file
+7. run 'skaffold dev'
+8. Access the app!

@@ -3,6 +3,8 @@ import { DatabaseConnectionError } from '../errors/DatabaseConnectionError';
 import express, { Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
 
+var jwt = require('jsonwebtoken');
+
 import { User } from '../models/user';
 import { BadRequestError } from '../errors/BadRequestError';
 
@@ -29,6 +31,19 @@ router.post(
     }
     const user = User.build({ email: email, password: password });
     await user.save();
+
+    // Generate Jwt
+
+    const userJwt = jwt.sign(
+      {
+        id: user.id,
+        email: user.email,
+      },
+      'asd'
+    );
+    req.session = {
+      jwt: userJwt,
+    };
     res.status(201).send(user);
   }
 );
