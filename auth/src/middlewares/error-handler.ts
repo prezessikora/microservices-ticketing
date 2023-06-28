@@ -17,13 +17,14 @@ export const errorHandler = (
     err instanceof NotFoundError ||
     err instanceof BadRequestError
   ) {
+    console.log(err);
     return res.status(err.statusCode).send({ errors: err.serializeErrors() });
   }
 
   res.status(400).send({
     errors: [
       {
-        message: 'Something went wrong.',
+        message: 'Something went wrong. ' + err,
       },
     ],
   });
