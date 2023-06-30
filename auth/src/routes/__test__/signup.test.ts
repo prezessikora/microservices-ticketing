@@ -64,3 +64,14 @@ it('disallows same emails', async () => {
     })
     .expect(400);
 });
+
+it('sets a cookie after succ singnup', async () => {
+  const response = await request(app)
+    .post('/api/users/singup')
+    .send({
+      email: 'test@test.pl',
+      password: 'asdfg',
+    })
+    .expect(201);
+  expect(response.get('Set-Cookie')).toBeDefined();
+});
